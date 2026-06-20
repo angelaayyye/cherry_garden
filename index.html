@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cherry garden</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="before-room">
+    <section class="home-screen" id="homeScreen" aria-label="welcome">
+      <div class="home-card">
+        <div class="kitten-stage" aria-hidden="true">
+          <div class="pixel-kitten kitten-one">
+            <span class="ear left"></span><span class="ear right"></span>
+            <span class="face"></span><span class="body"></span><span class="tail"></span>
+          </div>
+          <div class="pixel-kitten kitten-two">
+            <span class="ear left"></span><span class="ear right"></span>
+            <span class="face"></span><span class="body"></span><span class="tail"></span>
+          </div>
+        </div>
+        <p class="eyebrow">cherry garden</p>
+        <h2 class="welcome-line">hello <strong id="welcomeName">angela</strong>, welcome to our cherry garden</h2>
+        <label class="home-select">who is entering<select id="homeProfile">
+          <option value="angela">angela</option>
+          <option value="eric">eric</option>
+        </select></label>
+        <button class="enter-button" type="button" id="enterGarden">enter</button>
+      </div>
+    </section>
+
+    <section class="live-banner" aria-label="live map and status">
+      <div>
+        <p class="eyebrow">live map</p>
+        <div class="map-strip" aria-hidden="true">
+          <span class="map-dot angela-dot"></span>
+          <span class="map-path"></span>
+          <span class="map-dot eric-dot"></span>
+        </div>
+        <button class="banner-button" type="button" id="syncLocationBanner">sync location</button>
+      </div>
+      <div class="banner-person">
+        <strong>angela</strong>
+        <span id="bannerAngela">location off · battery unknown · not synced yet</span>
+      </div>
+      <div class="banner-person">
+        <strong>eric</strong>
+        <span id="bannerEric">location off · battery unknown · not synced yet</span>
+      </div>
+    </section>
+
+    <main class="app-shell">
+      <section class="world-panel" aria-label="shared room">
+        <img src="assets/cozy-room.png" alt="cozy illustrated shared room with movie, book, drawing, and game corners" />
+        <div class="world-shade"></div>
+        <div class="topbar">
+          <div>
+            <p class="eyebrow">live room</p>
+            <h1>cherry garden</h1>
+          </div>
+          <div class="top-actions">
+            <span class="sync-pill" id="syncStatus">live across tabs</span>
+            <button class="soft-button" type="button" id="inviteButton">copy invite</button>
+          </div>
+        </div>
+        <div class="avatar-row" aria-label="couple presence">
+          <article class="avatar-card" data-person-card="angela">
+            <span class="avatar dot-moss" aria-hidden="true">a</span>
+            <div>
+              <strong>angela</strong>
+              <p id="angelaStatus">not synced yet</p>
+              <p id="angelaMeta">location off · battery unknown</p>
+            </div>
+          </article>
+          <article class="avatar-card" data-person-card="eric">
+            <span class="avatar dot-rose" aria-hidden="true">e</span>
+            <div>
+              <strong>eric</strong>
+              <p id="ericStatus">not synced yet</p>
+              <p id="ericMeta">location off · battery unknown</p>
+            </div>
+          </article>
+        </div>
+        <div class="floating-note">
+          <p class="note-label">today</p>
+          <strong>movie, call, shared chapter, daily case, drawing duel.</strong>
+        </div>
+      </section>
+
+      <aside class="control-panel" aria-label="couple controls">
+        <section class="presence-card">
+          <div class="workspace-head compact">
+            <div>
+              <p class="eyebrow">device presence</p>
+              <h2>who is here</h2>
+            </div>
+            <span class="status-dot" aria-label="presence live"></span>
+          </div>
+          <div class="tool-grid presence-tools">
+            <label>this device<select id="profileSelect">
+              <option value="angela">angela</option>
+              <option value="eric">eric</option>
+            </select></label>
+            <button class="soft-button" type="button" id="syncLocation">sync location</button>
+          </div>
+          <p class="mini-copy" id="presenceNote">last active and battery update automatically when supported.</p>
+        </section>
+
+        <section class="dialog-card">
+          <p class="eyebrow">choose a room</p>
+          <div class="activity-grid" role="tablist" aria-label="activities">
+            <button class="activity is-active" type="button" data-activity="watch" role="tab" aria-selected="true"><span class="activity-icon movie-icon" aria-hidden="true"></span><span>watch</span></button>
+            <button class="activity" type="button" data-activity="read" role="tab" aria-selected="false"><span class="activity-icon book-icon" aria-hidden="true"></span><span>read</span></button>
+            <button class="activity" type="button" data-activity="games" role="tab" aria-selected="false"><span class="activity-icon game-icon" aria-hidden="true"></span><span>games</span></button>
+            <button class="activity" type="button" data-activity="solve" role="tab" aria-selected="false"><span class="activity-icon solve-icon" aria-hidden="true"></span><span>solve</span></button>
+            <button class="activity" type="button" data-activity="call" role="tab" aria-selected="false"><span class="activity-icon call-icon" aria-hidden="true"></span><span>call</span></button>
+            <button class="activity" type="button" data-activity="draw" role="tab" aria-selected="false"><span class="activity-icon draw-icon" aria-hidden="true"></span><span>draw</span></button>
+          </div>
+        </section>
+
+        <section class="workspace-card" aria-live="polite">
+          <div class="workspace-head">
+            <div>
+              <p class="eyebrow" id="modeType">watch together</p>
+              <h2 id="modeTitle">movie couch</h2>
+            </div>
+            <span class="status-pill" id="modeStatus">synced</span>
+          </div>
+
+          <div class="mode-view is-visible" id="watch">
+            <iframe class="movie-embed" id="movieEmbed" src="https://vidsrc.to/embed/movie/1339713" allowfullscreen></iframe>
+            <video id="moviePlayer" class="movie-player" controls playsinline></video>
+            <div class="tool-grid">
+              <label>movie url<input id="movieUrl" type="url" placeholder="paste a legal mp4/webm/movie url" /></label>
+              <label>local file<input id="movieFile" type="file" accept="video/*" /></label>
+            </div>
+            <div class="row-controls">
+              <button class="soft-button" type="button" id="loadMovie">load movie</button>
+              <button class="soft-button" type="button" id="moviePlay">play</button>
+              <button class="soft-button" type="button" id="moviePause">pause</button>
+              <button class="soft-button" type="button" id="movieSync">sync time</button>
+            </div>
+            <p class="mini-copy" id="movieState">paste a legal direct video link or choose a local movie file.</p>
+            <div class="watch-chat">
+              <p class="eyebrow">movie texts</p>
+              <div class="watch-messages" id="watchMessages">
+                <p><strong>angela</strong> ready when you are.</p>
+              </div>
+              <form class="watch-form" id="watchForm">
+                <input id="watchInput" type="text" placeholder="text during the movie..." autocomplete="off" />
+                <button class="soft-button" type="submit">send</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="mode-view" id="read">
+            <div class="tool-grid">
+              <label>book<select id="bookSelect"></select></label>
+              <label>book url<input id="bookUrl" type="url" placeholder="paste a legal text or ebook url" /></label>
+            </div>
+            <div class="reader-card">
+              <div class="reader-head">
+                <strong id="bookTitle">little women</strong>
+                <span id="readPage">page 1 of 4</span>
+              </div>
+              <article class="reader-text" id="readerText"></article>
+            </div>
+            <div class="row-controls">
+              <button class="soft-button" type="button" id="prevPage">previous</button>
+              <button class="soft-button" type="button" id="nextPage">next</button>
+              <button class="soft-button" type="button" id="openBookUrl">open url</button>
+            </div>
+            <textarea id="sharedBookNote" placeholder="shared notes sync here..."></textarea>
+          </div>
+
+          <div class="mode-view" id="games">
+            <div class="game-tabs" role="tablist" aria-label="games">
+              <button class="is-picked" type="button" data-game-mode="web">offline html</button>
+              <button type="button" data-game-mode="tictactoe">tic tac toe</button>
+              <button type="button" data-game-mode="memory">memory</button>
+              <button type="button" data-game-mode="reaction">reaction</button>
+            </div>
+            <div class="game-pane" id="tictactoeGame">
+              <div class="tic-grid" id="ticGrid"></div>
+              <div class="row-controls">
+                <button class="soft-button" type="button" id="resetTic">reset</button>
+                <span id="ticStatus">x turn</span>
+              </div>
+            </div>
+            <div class="game-pane" id="memoryGame">
+              <div class="memory-grid" id="memoryGrid"></div>
+              <div class="row-controls">
+                <button class="soft-button" type="button" id="resetMemory">new memory</button>
+                <span id="memoryStatus">find pairs together</span>
+              </div>
+            </div>
+            <div class="game-pane" id="reactionGame">
+              <button class="reaction-pad" type="button" id="reactionPad">start</button>
+              <p class="mini-copy" id="reactionStatus">wait for the color change, then tap.</p>
+            </div>
+            <div class="game-pane is-visible" id="webGame">
+              <div class="open-source-games">
+                <div class="section-head">
+                  <div>
+                    <p class="eyebrow">offline html pack</p>
+                    <h3>embedded games</h3>
+                  </div>
+                  <a class="soft-link" href="https://github.com/CoolDude2349/Offline-HTML-Games-Pack" target="_blank" rel="noopener">source pack</a>
+                </div>
+                <div class="source-game-grid">
+                  <button class="source-game" type="button" data-local-game="assets/games/2048.html">
+                    <strong>2048</strong>
+                    <span>puzzle · embedded locally</span>
+                  </button>
+                  <button class="source-game" type="button" data-local-game="assets/games/12minibattles.html">
+                    <strong>12 mini battles</strong>
+                    <span>two-player mini games · embedded locally</span>
+                  </button>
+                  <button class="source-game" type="button" data-local-game="assets/games/1on1soccer.html">
+                    <strong>1 on 1 soccer</strong>
+                    <span>sports · embedded locally</span>
+                  </button>
+                  <button class="source-game" type="button" data-local-game="assets/games/1on1tennis.html">
+                    <strong>1 on 1 tennis</strong>
+                    <span>sports · embedded locally</span>
+                  </button>
+                  <button class="source-game" type="button" data-local-game="assets/games/retropingpong.html">
+                    <strong>retro ping pong</strong>
+                    <span>two-player pong · embedded locally</span>
+                  </button>
+                  <button class="source-game" type="button" data-local-game="assets/games/soccerrandom.htm">
+                    <strong>soccer random</strong>
+                    <span>two-player soccer · embedded locally</span>
+                  </button>
+                  <button class="source-game" type="button" data-local-game="assets/games/volleyrandom.html">
+                    <strong>volley random</strong>
+                    <span>two-player volley · embedded locally</span>
+                  </button>
+                  <button class="source-game" type="button" data-local-game="assets/games/boxingrandom.htm">
+                    <strong>boxing random</strong>
+                    <span>two-player boxing · embedded locally</span>
+                  </button>
+                  <button class="source-game" type="button" data-local-game="assets/games/stickarchersbattle.html">
+                    <strong>stick archers battle</strong>
+                    <span>two-player archery · embedded locally</span>
+                  </button>
+                </div>
+                <div class="row-controls">
+                  <button class="soft-button" type="button" id="muteGame">mute game</button>
+                  <label class="volume-control">volume<input id="gameVolume" type="range" min="0" max="100" value="70" /></label>
+                  <button class="soft-button" type="button" id="fullscreenGame">fullscreen game</button>
+                </div>
+                <div class="remote-play">
+                  <div class="section-head">
+                    <div>
+                      <p class="eyebrow">remote play</p>
+                      <h3>angela + eric from different places</h3>
+                    </div>
+                    <span class="tiny-pill" id="remoteStatus">not connected</span>
+                  </div>
+                  <div class="remote-grid">
+                    <button class="soft-button" type="button" id="createOffer">create invite code</button>
+                    <button class="soft-button" type="button" id="acceptOffer">accept invite</button>
+                    <button class="soft-button" type="button" id="acceptAnswer">finish connect</button>
+                  </div>
+                  <label>your code<textarea id="localSignal" readonly placeholder="your invite or answer code appears here"></textarea></label>
+                  <label>their code<textarea id="remoteSignal" placeholder="paste their code here"></textarea></label>
+                  <div class="remote-pad" aria-label="remote controls">
+                    <button type="button" data-remote-key="ArrowUp">up</button>
+                    <button type="button" data-remote-key="ArrowLeft">left</button>
+                    <button type="button" data-remote-key=" ">action</button>
+                    <button type="button" data-remote-key="ArrowRight">right</button>
+                    <button type="button" data-remote-key="ArrowDown">down</button>
+                  </div>
+                  <p class="mini-copy">both people open cherry garden, choose the same game, exchange codes once, then keyboard presses are mirrored.</p>
+                </div>
+              </div>
+              <iframe id="webGameFrame" title="embedded offline game" src="assets/games/2048.html" allowfullscreen></iframe>
+              <p class="mini-copy" id="webGameStatus">loaded: 2048 from the offline html games pack.</p>
+            </div>
+          </div>
+
+          <div class="mode-view" id="solve">
+            <div class="case-file">
+              <p class="eyebrow">case file</p>
+              <h3>the vanishing blue messages</h3>
+              <p>someone deleted a message thread, staged a screenshot, and blamed the wrong person. solve the timeline together.</p>
+            </div>
+            <div class="evidence-tabs">
+              <button class="is-picked" type="button" data-evidence="texts">texts</button>
+              <button type="button" data-evidence="shots">screenshots</button>
+              <button type="button" data-evidence="timeline">timeline</button>
+              <button type="button" data-evidence="suspects">suspects</button>
+            </div>
+            <div class="evidence-card" id="evidenceCard"></div>
+            <div class="solve-steps">
+              <label>step 1: missing time<input id="solveTime" placeholder="type the missing time" /></label>
+              <label>step 2: forged screenshot<input id="solveFake" placeholder="who faked it?" /></label>
+              <label>step 3: culprit<input id="solveCulprit" placeholder="final suspect" /></label>
+              <button class="soft-button" type="button" id="checkCase">check case</button>
+            </div>
+            <p class="case-result" id="caseResult">compare all evidence before guessing.</p>
+          </div>
+
+          <div class="mode-view" id="call">
+            <div class="call-stage">
+              <div class="video-tile">
+                <video id="localCallVideo" autoplay muted playsinline></video>
+                <span>your camera</span>
+              </div>
+              <div class="video-tile partner-tile">
+                <div id="partnerCallStatus">waiting for eric</div>
+                <span>partner</span>
+              </div>
+            </div>
+            <div class="row-controls">
+              <button class="soft-button" type="button" id="startCall">start camera</button>
+              <button class="soft-button" type="button" id="muteCall">mute mic</button>
+              <button class="soft-button" type="button" id="closeCamera">close camera</button>
+              <button class="soft-button" type="button" id="stopCall">end</button>
+              <a class="soft-link" id="facetimeLink" href="facetime://" target="_blank" rel="noopener">open facetime</a>
+            </div>
+            <div class="filter-row" aria-label="camera filters">
+              <button class="soft-button is-picked" type="button" data-call-filter="none">soft</button>
+              <button class="soft-button" type="button" data-call-filter="warm">warm</button>
+              <button class="soft-button" type="button" data-call-filter="dream">dream</button>
+              <button class="soft-button" type="button" data-call-filter="mono">mono</button>
+            </div>
+            <div class="photobooth">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">photobooth</p>
+                  <h3>take a strip together</h3>
+                </div>
+                <button class="soft-button" type="button" id="takePhoto">snap</button>
+              </div>
+              <div class="photo-strip" id="photoStrip">
+                <div class="photo-slot">your photo</div>
+                <div class="photo-slot">partner photo</div>
+              </div>
+              <canvas id="photoCanvas" width="480" height="360" hidden></canvas>
+            </div>
+            <p class="mini-copy" id="callState">camera is mirrored like a selfie. call status syncs in the room.</p>
+          </div>
+
+          <div class="mode-view" id="draw">
+            <div class="draw-mode-row">
+              <button class="soft-button is-picked" type="button" data-draw-mode="free">free draw</button>
+              <button class="soft-button" type="button" data-draw-mode="duel">timed guess</button>
+              <span class="tiny-pill" id="drawTimer">free</span>
+            </div>
+            <canvas id="drawCanvas" width="680" height="340" aria-label="shared drawing canvas"></canvas>
+            <div class="draw-tools" aria-label="drawing colors">
+              <button class="swatch is-picked" style="--swatch:#818263" data-color="#818263" type="button" aria-label="moss"></button>
+              <button class="swatch" style="--swatch:#c2c395" data-color="#c2c395" type="button" aria-label="sage"></button>
+              <button class="swatch" style="--swatch:#ddbaae" data-color="#ddbaae" type="button" aria-label="rose"></button>
+              <button class="swatch" style="--swatch:#efd7cf" data-color="#efd7cf" type="button" aria-label="blush"></button>
+              <button class="soft-button" type="button" id="newTheme">new theme</button>
+              <button class="soft-button" type="button" id="clearCanvas">clear</button>
+            </div>
+            <div class="tool-grid">
+              <label>theme<input id="drawTheme" readonly value="free draw" /></label>
+              <label>guess<input id="drawGuess" placeholder="guess the theme" /></label>
+            </div>
+            <p class="mini-copy" id="drawStatus">strokes sync live across open cherry garden tabs.</p>
+          </div>
+        </section>
+
+        <section class="chat-card" aria-label="chat">
+          <div class="workspace-head compact">
+            <div>
+              <p class="eyebrow">room chat</p>
+              <h2>always here</h2>
+            </div>
+            <span class="status-dot" aria-label="both online"></span>
+          </div>
+          <div class="messages" id="messages">
+            <p><strong>angela</strong> i opened the room.</p>
+            <p><strong>eric</strong> i can see it.</p>
+          </div>
+          <form class="chat-form" id="chatForm">
+            <input id="chatInput" type="text" placeholder="send a little note..." autocomplete="off" />
+            <button type="submit" aria-label="send">send</button>
+          </form>
+        </section>
+      </aside>
+    </main>
+    <div class="toast" id="toast" role="status">synced</div>
+    <script src="script.js"></script>
+  </body>
+</html>
